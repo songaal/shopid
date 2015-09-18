@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="co.fastcat.shopid.db.mapper.OrganizationMapper">
+
+    <select id="select" parameterType="map" resultType="co.fastcat.shopid.db.entity.Organization">
+        select * from organization
+        where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="co.fastcat.shopid.db.entity.Organization">
+        INSERT INTO organization(
+            `id`, `name`
+        ) VALUES(
+            #{id}, #{name}
+        )
+    </insert>
+
+    <delete id="truncate">
+        truncate table organization
+    </delete>
+
+    <delete id="delete">
+        delete from organization
+        where id = #{id}
+    </delete>
+</mapper>

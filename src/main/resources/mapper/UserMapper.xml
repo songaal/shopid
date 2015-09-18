@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="co.fastcat.shopid.db.mapper.UserMapper">
+
+    <select id="select" parameterType="java.util.HashMap" resultType="co.fastcat.shopid.db.entity.User">
+        select `id`, `orgId`, `type`, `joinDate` from user
+        where id = #{id}
+    </select>
+
+    <select id="selectWithPassword" parameterType="co.fastcat.shopid.db.entity.User" resultType="co.fastcat.shopid.db.entity.User">
+        select `id`, `orgId`, `type`, `joinDate` from user
+  	    where id = #{id} and `password`=#{password}
+    </select>
+
+    <select id="selectInOrganization" parameterType="java.util.HashMap" resultType="co.fastcat.shopid.db.entity.User">
+        select `id`, `orgId`, `type`, `joinDate` from user
+        where orgId = #{orgId}
+    </select>
+
+    <insert id="insert" parameterType="co.fastcat.shopid.db.entity.User">
+        INSERT INTO user(
+            `id`, `password`, `orgId`, `type`
+        ) VALUES(
+            #{id}, #{password}, #{orgId}, #{type}
+        )
+    </insert>
+
+    <delete id="delete">
+        delete from user
+        where id = #{id}
+    </delete>
+
+    <delete id="truncate">
+        truncate table user
+    </delete>
+</mapper>
